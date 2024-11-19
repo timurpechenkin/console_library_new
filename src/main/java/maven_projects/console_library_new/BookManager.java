@@ -16,22 +16,13 @@ public class BookManager {
 			expectedBooks.add(book);
 		}
 		Book[] expectedBooksArray = new Book[expectedBooks.size()];
-		for (int i = 0; i<expectedBooks.size(); i++) {
-			expectedBooksArray[i]=expectedBooks.get(i);
+		for (int i = 0; i < expectedBooks.size(); i++) {
+			expectedBooksArray[i] = expectedBooks.get(i);
 		}
+		ResultBooks resultBooks = new ResultBooks(expectedBooksArray);
 		Gson gson = new Gson();
-		String res = gson.toJson(expectedBooksArray);
-		System.out.println(res);
-
-//        for(Book book: books){
-//            if(book.getName().equals(supplement[0])) expectedBooks.add(book);
-//        }
-//        if(expectedBooks.isEmpty()){
-//            System.out.println("There is no such books");
-//        }
-//        else {
-//            for (Book book: expectedBooks) System.out.println(book.toString());
-//        }
+		String result = gson.toJson(resultBooks);
+		System.out.println(result);
 	}
 
 	public void post(String supplement) {
