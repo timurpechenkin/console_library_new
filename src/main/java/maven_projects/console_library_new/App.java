@@ -30,7 +30,7 @@ public class App {
 			switch (userInput) {
 			case "HELP":
 				System.out.println(
-						"List of commands:\nGET{\"Name\":\"xxx\"}\nHELP\nPOST {\"Name\":\"xxx\", \"Author\":\"xxx\", \"PagesCount\":xxx}\nSTOP");
+						"List of commands:\nGET ?name=...&author=...&pagescount=...&pagesless\nHELP\nPOST {\"Name\":\"...\", \"Author\":\"...\", \"PagesCount\":...}\nSTOP");
 				break;
 			case "STOP":
 				System.out.println("The session was stopped");
