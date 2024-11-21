@@ -1,6 +1,7 @@
 package maven_projects.console_library_new;
 
 import java.util.*;
+
 import com.google.gson.Gson;
 
 public class BookManager {
@@ -11,25 +12,39 @@ public class BookManager {
 	}
 
 	public void get(String supplement) {
-		ArrayList<Book> expectedBooks = new ArrayList<>();
-		for (Book book : books) {
-			expectedBooks.add(book);
+		try {
+			BookFilter bookFilter = new BookFilter(supplement);
+			ArrayList<Book> expectedBooks = new ArrayList<>();
+			for (Book book : books) {
+				if (bookFilter.fits(book))
+					expectedBooks.add(book);
+			}
+			if (expectedBooks.isEmpty())
+				System.out.println("There is no books with this parameters");
+			else {
+				Book[] expectedBooksArray = new Book[expectedBooks.size()];
+				for (int i = 0; i < expectedBooks.size(); i++) {
+					expectedBooksArray[i] = expectedBooks.get(i);
+				}
+				ResultBooks resultBooks = new ResultBooks(expectedBooksArray);
+				Gson gson = new Gson();
+				String result = gson.toJson(resultBooks);
+				System.out.println(result);
+			}
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
 		}
-		Book[] expectedBooksArray = new Book[expectedBooks.size()];
-		for (int i = 0; i < expectedBooks.size(); i++) {
-			expectedBooksArray[i] = expectedBooks.get(i);
-		}
-		ResultBooks resultBooks = new ResultBooks(expectedBooksArray);
-		Gson gson = new Gson();
-		String result = gson.toJson(resultBooks);
-		System.out.println(result);
 	}
 
 	public void post(String supplement) {
 		Gson gson = new Gson();
-		Book book = gson.fromJson(supplement, Book.class);
-		books.add(book);
-		System.out.println("The book was added");
+		try {
+			Book book = gson.fromJson(supplement, Book.class);
+			books.add(book);
+			System.out.println("The book was added");
+		} catch (Exception ex) {
+			System.out.println("The command is incorrect");
+		}
 	}
 
 //    public void delete(){

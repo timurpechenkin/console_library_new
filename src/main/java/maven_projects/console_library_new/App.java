@@ -1,6 +1,5 @@
 package maven_projects.console_library_new;
 
-import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,8 +18,6 @@ public class App {
 
 		scan.close();
 
-		
-		
 		System.out.print("The the Library was closed");
 	}
 
