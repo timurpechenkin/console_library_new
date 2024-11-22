@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class FileManager {
 
 	public static void saveBooks(String filePath, ArrayList<Book> books) {
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath, true))) {
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
 			oos.writeObject(books);
 			System.out.println("The books was saved");
 		} catch (Exception ex) {
