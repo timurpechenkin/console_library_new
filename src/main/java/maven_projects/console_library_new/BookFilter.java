@@ -16,7 +16,7 @@ public class BookFilter {
 		for (String str : parametersAndValues) {
 			equalIndex = str.indexOf('=');
 			if (equalIndex < 1)
-				throw new Exception("Query string is incorrect! There is no value");
+				throw new Exception("Query string is incorrect! \""+str+"\" has no value");
 			parameter = str.substring(0, equalIndex);
 			value = str.substring(equalIndex + 1);
 			switch (parameter) {
@@ -53,12 +53,9 @@ public class BookFilter {
 	private boolean isInteger(String s) {
 		for (int i = 0; i < s.length(); i++) {
 			if (!Character.isDigit(s.charAt(i))) {
-				// В строке найден недопустимый символ.
 				return false;
 			}
 		}
-
-		// Если мы здесь, значит, строка содержит только цифры. 🎉
 		return true;
 	}
 

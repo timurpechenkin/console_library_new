@@ -1,10 +1,12 @@
 package maven_projects.console_library_new;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
 	private String Name;
 	private String Author;
 	private int PagesCount;
-	
+
 	public Book(String name, String author, int pagesCount) {
 		this.Name = name;
 		this.Author = author;

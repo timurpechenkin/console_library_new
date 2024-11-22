@@ -1,13 +1,15 @@
 package maven_projects.console_library_new;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class App {
 	public static void main(String[] args) {
-		ArrayList<Book> books = new ArrayList<>();
+		final String filePath = "books_list.dat";
+		
+		System.out.print("Welcome to the Library!\nYou can enter \"HELP\" to get the list of commands\n");
+		ArrayList<Book> books = FileManager.getBooks(filePath);
 		BookManager bookManager = new BookManager(books);
-		System.out.print("Welcome to the Library!\nYou can enter <<HELP>> to get the list of commands\n");
+		
 		String userInput;
 		Scanner scan = new Scanner(System.in);
 		do {
@@ -15,9 +17,9 @@ public class App {
 			userInput = scan.nextLine();
 			executeCommand(userInput, bookManager);
 		} while (!userInput.equals("STOP"));
-
+		
+		FileManager.saveBooks(filePath, books);
 		scan.close();
-
 		System.out.print("The the Library was closed");
 	}
 
@@ -30,7 +32,7 @@ public class App {
 			switch (userInput) {
 			case "HELP":
 				System.out.println(
-						"List of commands:\nGET ?name=...&author=...&pagescount=...&pagesless\nHELP\nPOST {\"Name\":\"...\", \"Author\":\"...\", \"PagesCount\":...}\nSTOP");
+						"List of commands:\nGET ?name=...&author=...&pagescount=...&pagesless=...&pagesmore=...\nHELP\nPOST {\"Name\":\"...\", \"Author\":\"...\", \"PagesCount\":...}\nSTOP");
 				break;
 			case "STOP":
 				System.out.println("The session was stopped");

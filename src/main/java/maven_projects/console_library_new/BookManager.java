@@ -43,7 +43,7 @@ public class BookManager {
 			books.add(book);
 			System.out.println("The book was added");
 		} catch (Exception ex) {
-			System.out.println("The command is incorrect");
+			System.out.println("Command`s supplement is not a JSON");
 		}
 	}
 
